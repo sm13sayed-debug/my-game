@@ -1,11 +1,12 @@
 name: Build Kivy APK
 
 on:
+  workflow_dispatch:
   push:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
@@ -14,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: '3.10'
 
       - name: Install system dependencies
         run: |
@@ -23,7 +24,7 @@ jobs:
           autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
           libtinfo5 cmake libffi-dev libssl-dev
 
-      - name: Install Python tools
+      - name: Install Buildozer
         run: |
           pip install --upgrade pip
           pip install buildozer cython
